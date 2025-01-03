@@ -9,11 +9,39 @@ import { formatDateToTime, formatDateToWIB } from '../../_global/helper/formatte
 import TemplateInfoRow from '../../_global/component/Row/TemplateInfoRow';
 import ListTugasSiswa from '../container/Tugas/ListTugasSiswa';
 import Content from '../../_global/layout/Content';
+import axios from 'axios';
 
 const TugasKelasGuruView = () => {
     const { id, id_tugas } = useParams()
     const navigate = useNavigate()
     const { data, loading } = useFetch(import.meta.env.VITE_BACKEND + '/guru/kelas/' + id + '/tugas/' + id_tugas)
+
+    const handleDownload = async (url, folder = 'tugas') => {
+        try {
+            const response = await axios.get(`http://localhost:9000/backdoor/download/${folder}/${url}`, {
+                responseType: 'blob', // Untuk memastikan file diterima sebagai binary data
+            });
+
+            // Membuat link untuk mendownload file
+            const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+
+            // Nama file, Anda bisa menyesuaikan ini berdasarkan header respons jika tersedia
+            const contentDisposition = response.headers['content-disposition'];
+            const filename = contentDisposition
+                ? contentDisposition.split('filename=')[1].replace(/"/g, '')
+                : url;
+
+            link.setAttribute('download', filename);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        } catch (error) {
+            console.error('Error downloading file:', error);
+            alert('Gagal mendownload file.');
+        }
+    };
 
     if (loading) {
         return (
@@ -70,6 +98,7 @@ const TugasKelasGuruView = () => {
                                 </div>
                             </div>
                             <button
+                                onClick={() => handleDownload(data?.filename)}
                                 className="btn btn-primary btn-sm text-white "
                             >
                                 <IoMdDownload />

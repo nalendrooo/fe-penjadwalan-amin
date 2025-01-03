@@ -60,7 +60,7 @@ const AdminLayoutSidebar = ({ children }) => {
         <div className="flex h-screen">
             <aside
                 id="sidebar-multi-level-sidebar"
-                className="fixed top-0 left-0 z-40 w-64 h-screen bg-gray-50 dark:bg-gray-800"
+                className="fixed top-0 left-0 z-40 w-64 h-screen bg-[#6148FF] dark:bg-[#6148FF]"
                 aria-label="Sidebar"
             >
                 <div className='flex justify-center my-4'>
@@ -75,8 +75,8 @@ const AdminLayoutSidebar = ({ children }) => {
 
                                         <a
                                             className={
-                                                "flex items-center p-2 text-gray-900 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" +
-                                                (menuItem.path === location.pathname ? " bg-gray-100 dark:bg-gray-700" : "")
+                                                "flex items-center p-2 text-gray-900 rounded dark:text-white hover:bg-white dark:hover:bg-white dark:hover:text-[#6148FF]  group dark:hover:opacity-80" +
+                                                (menuItem.path === location.pathname ? " bg-white dark:bg-white dark:text-[#6148FF]" : "")
                                             }
                                         >
                                             {menuItem.icon && menuItem.icon}

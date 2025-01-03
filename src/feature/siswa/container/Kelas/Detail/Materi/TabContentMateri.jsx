@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { BsCloudDownload } from "react-icons/bs";
 import { useSearchParams } from 'react-router-dom';
@@ -6,12 +7,40 @@ const TabContentMateri = ({
     data,
     loading
 }) => {
-   
+
     const [searchParams] = useSearchParams()
 
     const search = searchParams.get('search') || ''
 
     const filteredData = data?.filter((item) => item.title.toLowerCase().includes(search?.toLowerCase())) || []
+
+    const handleDownload = async (url) => {
+        try {
+            const response = await axios.get(`http://localhost:9000/backdoor/download/materi/${url}`, {
+                responseType: 'blob', // Untuk memastikan file diterima sebagai binary data
+            });
+
+            // Membuat link untuk mendownload file
+            const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+
+            // Nama file, Anda bisa menyesuaikan ini berdasarkan header respons jika tersedia
+            const contentDisposition = response.headers['content-disposition'];
+            const filename = contentDisposition
+                ? contentDisposition.split('filename=')[1].replace(/"/g, '')
+                : url;
+
+            link.setAttribute('download', filename);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        } catch (error) {
+            console.error('Error downloading file:', error);
+            alert('Gagal mendownload file.');
+        }
+    };
+
 
     if (loading) {
         return (
@@ -31,7 +60,9 @@ const TabContentMateri = ({
                             <p className='text-sm text-base line-clamp-3'>{item.description}</p>
                             <p>{item.type_file.split('/').pop().toUpperCase()}</p>
                             <div className="card-actions justify-end">
-                                <button className="btn btn-circle">
+                                <button
+                                    onClick={() => handleDownload(item?.filename)}
+                                    className="btn btn-circle">
                                     <BsCloudDownload size={20} />
                                 </button>
                             </div>

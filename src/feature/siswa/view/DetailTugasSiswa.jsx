@@ -51,6 +51,33 @@ const DetailTugasSiswaView = () => {
 
     const disabled = fileRawList.length === 0
 
+    const handleDownload = async (url, folder = 'tugas') => {
+        try {
+            const response = await axios.get(`http://localhost:9000/backdoor/download/${folder}/${url}`, {
+                responseType: 'blob', // Untuk memastikan file diterima sebagai binary data
+            });
+
+            // Membuat link untuk mendownload file
+            const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+
+            // Nama file, Anda bisa menyesuaikan ini berdasarkan header respons jika tersedia
+            const contentDisposition = response.headers['content-disposition'];
+            const filename = contentDisposition
+                ? contentDisposition.split('filename=')[1].replace(/"/g, '')
+                : url;
+
+            link.setAttribute('download', filename);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        } catch (error) {
+            console.error('Error downloading file:', error);
+            alert('Gagal mendownload file.');
+        }
+    };
+
     if (loading) {
         return (
             <div className="flex justify-center items-center ">
@@ -107,7 +134,9 @@ const DetailTugasSiswaView = () => {
                                         <p className="text-gray-400">{(data.size_file / 1048576).toFixed(2)} MB</p>
                                     </div>
                                 </div>
-                                <button className="btn btn-sm text-white btn-primary flex items-center">
+                                <button
+                                    onClick={() => handleDownload(data.filename)}
+                                    className="btn btn-sm text-white btn-primary flex items-center">
                                     <BsCloudDownload size={20} />
                                     <p> Unduh Dokumen</p>
                                 </button>
@@ -141,7 +170,9 @@ const DetailTugasSiswaView = () => {
                                             <p className="text-gray-400">{(data.submitted.size_file / 1048576).toFixed(2)} MB</p>
                                         </div>
                                     </div>
-                                    <button className="btn btn-sm text-white btn-primary flex items-center">
+                                    <button
+                                        onClick={() => handleDownload(data.submitted.filename, 'tugas-siswa')}
+                                        className="btn btn-sm text-white btn-primary flex items-center">
                                         <BsCloudDownload size={20} />
                                         <p> Unduh Dokumen</p>
                                     </button>

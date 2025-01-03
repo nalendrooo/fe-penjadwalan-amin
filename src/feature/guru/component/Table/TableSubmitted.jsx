@@ -4,12 +4,40 @@ import { BsCloudDownload } from "react-icons/bs";
 import { FaRegEye } from "react-icons/fa";
 import { checkSubmissionStatus, formatDateToWIB } from '../../../_global/helper/formatter';
 import DialogUpdateNilai from '../../container/Tugas/Dialog/DialogUpdateNilai';
+import axios from 'axios';
 
 const TableSubmitted = ({
     data,
     deadline,
     refetch
 }) => {
+
+    const handleDownload = async (url, folder = 'tugas-siswa') => {
+        try {
+            const response = await axios.get(`http://localhost:9000/backdoor/download/${folder}/${url}`, {
+                responseType: 'blob', // Untuk memastikan file diterima sebagai binary data
+            });
+
+            // Membuat link untuk mendownload file
+            const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+
+            // Nama file, Anda bisa menyesuaikan ini berdasarkan header respons jika tersedia
+            const contentDisposition = response.headers['content-disposition'];
+            const filename = contentDisposition
+                ? contentDisposition.split('filename=')[1].replace(/"/g, '')
+                : url;
+
+            link.setAttribute('download', filename);
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        } catch (error) {
+            console.error('Error downloading file:', error);
+            alert('Gagal mendownload file.');
+        }
+    };
 
     return (
         <div className="overflow-x-auto">
@@ -62,10 +90,10 @@ const TableSubmitted = ({
                             </td>
                             <td className='flex flex-col gap-4'>
                                 <div className="flex justify-center gap-2">
-                                    <button className="btn btn-sm text-white bg-[#FFB922]">
-                                        <FaRegEye size={20} />
-                                    </button>
-                                    <button className="btn btn-sm text-white bg-[#866FF9]">
+
+                                    <button
+                                        onClick={() => handleDownload(item.filename)}
+                                        className="btn btn-sm text-white bg-[#866FF9]">
                                         <BsCloudDownload size={20} />
                                     </button>
                                 </div>
