@@ -10,6 +10,7 @@ import TugasContainer from "../container/Kelas/Detail/Tugas/TugasContainer";
 import Content from "../../_global/layout/Content";
 import ReportContainer from "../container/Kelas/Detail/Report/ReportContainer";
 import UjianContainer from "../container/Kelas/Detail/Ujian/UjianContainer";
+import TemplateInfoRow from "../../_global/component/Row/TemplateInfoRow";
 // import TabContentMateri from "../container/Kelas/Detail/Materi/TabContentMateri";
 // import TabContentSiswa from "../container/Detail/Siswa/TabContentSiswa";
 // import TabContentTugas from "../container/Detail/Tugas/TabContentTugas";
@@ -43,8 +44,23 @@ const DetailKelasSiswaView = () => {
                 <div className="card bg-base-100 shadow-xl bg-gradient-to-l from-indigo-500">
                     <div className="card-body">
                         <h2 className="text-3xl font-bold">{data?.title}</h2>
-                        <p>Mata Pelajaran: {data?.user?.mataPelajaranGuru?.[0]?.mataPelajaran?.title}</p>
-                        <p>Deskripsi: {data?.description}</p>
+                        <TemplateInfoRow
+                            classNameLabel="whitespace-nowrap"
+                            data={[
+                                {
+                                    label: "Nama Guru",
+                                    value: data?.user?.nama
+                                },
+                                {
+                                    label: "Mata Pelajaran",
+                                    value: data?.user?.mataPelajaranGuru?.[0]?.mataPelajaran?.title
+                                },
+                                {
+                                    label: "Deskripsi",
+                                    value: data?.description
+                                },
+                            ]}
+                        />
                     </div>
                 </div>
 

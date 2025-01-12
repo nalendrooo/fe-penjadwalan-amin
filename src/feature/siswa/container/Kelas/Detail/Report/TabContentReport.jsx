@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import ReactApexChart from 'react-apexcharts'
+import { checkSubmissionStatus, formatDateToWIB } from '../../../../../_global/helper/formatter';
+import { BsCloudDownload } from 'react-icons/bs';
 
 const TabContentReport = ({
     data
@@ -115,10 +117,57 @@ const TabContentReport = ({
             }
         }))
     }, [data])
+
     return (
-        <div className="overflow-x-auto bg-white mt-8 rounded-lg">
-            <ReactApexChart options={state.options} series={state.series} type="bar" height={400} />
-        </div>
+        <Fragment>
+
+            <div className="overflow-x-auto bg-white mt-8 rounded-lg">
+                <ReactApexChart options={state.options} series={state.series} type="bar" height={400} />
+            </div>
+            <div className="overflow-x-auto bg-white mt-8 rounded-lg">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Tugas</th>
+                            <th>Batas Pengumpulan</th>
+                            <th>Tanggal dan Jam Pengumpulan</th>
+                            <th className='text-center'>Nilai</th>
+                            <th className='text-center'>Komentar</th>
+                            <th className='text-center'>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data?.tugasSiswa?.sort((a, b) => a.tugas.id - b.tugas.id).map((item, index) => (
+                            <tr key={index}>
+                                <th>{index + 1}</th>
+                                <td>
+                                    {item?.tugas?.title}
+                                </td>
+                                <td>
+                                    {formatDateToWIB(item?.tugas?.deadlineAt)}
+                                </td>
+                                <td>
+                                    {formatDateToWIB(item?.tugas?.createdAt)}
+                                </td>
+                                <td className='text-center'>
+                                    {item.nilai ? item.nilai : '-'}
+                                </td>
+                                <td className='text-center'>
+                                    {item.comment ? item.comment.slice(0, 20) + '...' : '-'}
+                                </td>
+                                <td>
+                                    <span className={` flex items-center gap-2 justify-center text-xs font-medium px-2 py-1 rounded-full ${checkSubmissionStatus(item?.tugas?.createdAt, item?.tugas?.deadlineAt).color}`}>
+                                        <span>{checkSubmissionStatus(item?.tugas?.createdAt, item?.tugas?.deadlineAt).status}</span>
+                                    </span>
+                                </td>
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </Fragment>
     )
 }
 

@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { BsCloudDownload } from "react-icons/bs";
-import { FaRegEye } from "react-icons/fa";
+import { FaRegCommentDots, FaRegEye } from "react-icons/fa";
 import { checkSubmissionStatus, formatDateToWIB } from '../../../_global/helper/formatter';
 import DialogUpdateNilai from '../../container/Tugas/Dialog/DialogUpdateNilai';
 import axios from 'axios';
+import DialogTambahComment from '../../container/Tugas/Dialog/DialogTambahComment';
 
 const TableSubmitted = ({
     data,
@@ -48,6 +49,7 @@ const TableSubmitted = ({
                         <th>Nama</th>
                         <th>Tanggal dan Jam Pengumpulan</th>
                         <th className='text-center'>Nilai</th>
+                        <th className='text-center'>Komentar</th>
                         <th className='text-center'>Status</th>
                         <th className='text-center'>Aksi</th>
                     </tr>
@@ -83,6 +85,9 @@ const TableSubmitted = ({
                             <td className='text-center'>
                                 {item.nilai ? item.nilai : '-'}
                             </td>
+                            <td className='text-center'>
+                                {item.comment ? item.comment.slice(0, 20) + '...' : '-'}
+                            </td>
                             <td>
                                 <span className={` flex items-center gap-2 justify-center text-xs font-medium px-2 py-1 rounded-full ${checkSubmissionStatus(item.createdAt, deadline).color}`}>
                                     <span>{checkSubmissionStatus(item.createdAt, deadline).status}</span>
@@ -96,6 +101,7 @@ const TableSubmitted = ({
                                         className="btn btn-sm text-white bg-[#866FF9]">
                                         <BsCloudDownload size={20} />
                                     </button>
+                                    <DialogTambahComment data={item} refetch={refetch} />
                                 </div>
                                 <DialogUpdateNilai data={item} refetch={refetch} />
                             </td>

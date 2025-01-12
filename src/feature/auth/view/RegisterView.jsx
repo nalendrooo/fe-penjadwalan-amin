@@ -86,17 +86,22 @@ const RegisterView = () => {
 
   const handleChangeTelephone = (e) => {
     const value = e.target.value;
-    if (!validateTelephone(value)) {
+
+    // Batasi input hanya angka dan maksimal 13 karakter
+    const isValid = /^[0-9]{0,13}$/.test(value);
+
+    if (!isValid) {
       setErrors((prev) => ({
         ...prev,
-        telephone: 'Format nomor telepon tidak valid',
+        telephone: 'Nomor telepon hanya boleh berisi angka dan maksimal 13 karakter',
       }));
-    } else {
-      setErrors((prev) => ({ ...prev, telephone: '' }));
+      return; // Jangan set state jika tidak valid
     }
 
-    setState((prev) => ({ ...prev, telephone: value }));
+    setErrors((prev) => ({ ...prev, telephone: '' })); // Reset error jika valid
+    setState((prev) => ({ ...prev, telephone: value })); // Update state
   };
+
 
 
   const handleSubmit = async (e) => {

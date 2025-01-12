@@ -27,26 +27,35 @@ const DialogTambahUjian = ({
     const { addToast } = useToast()
 
     const handleUpload = () => {
-        if (fileRawList.length) {
-            uploadFile("/upload/single/ujian", fileRawList[0], 'image');
-        } else {
-            addToast('File tidak boleh kosong', 'error')
-        }
+        // if (fileRawList.length) {
+        //     uploadFile("/upload/single/ujian", fileRawList[0], 'image');
+        // } else {
+        //     addToast('File tidak boleh kosong', 'error')
+        // }
+        axios.post(import.meta.env.VITE_BACKEND + `/guru/kelas/${id}/ujian`, { ...state, ...response })
+            .then((res) => {
+                addToast('Ujian berhasil ditambahkan', 'success')
+                setOpen(false)
+                setFileRawList([])
+                setState(initialState)
+                refetch()
+            })
+            .catch((err) => console.log(err));
     };
 
-    useEffect(() => {
-        if (response) {
-            axios.post(import.meta.env.VITE_BACKEND + `/guru/kelas/${id}/ujian`, { ...state, ...response })
-                .then((res) => {
-                    addToast('Ujian berhasil ditambahkan', 'success')
-                    setOpen(false)
-                    setFileRawList([])
-                    setState(initialState)
-                    refetch()
-                })
-                .catch((err) => console.log(err));
-        }
-    }, [response])
+    // useEffect(() => {
+    //     if (response) {
+    //         axios.post(import.meta.env.VITE_BACKEND + `/guru/kelas/${id}/ujian`, { ...state, ...response })
+    //             .then((res) => {
+    //                 addToast('Ujian berhasil ditambahkan', 'success')
+    //                 setOpen(false)
+    //                 setFileRawList([])
+    //                 setState(initialState)
+    //                 refetch()
+    //             })
+    //             .catch((err) => console.log(err));
+    //     }
+    // }, [response])
 
     const isEndTimeValid = () => {
         if (!state.startTime || !state.endTime) return false; // Pastikan keduanya diisi
@@ -67,13 +76,12 @@ const DialogTambahUjian = ({
     const disabled =
         !state.title ||
         !state.description ||
-        fileRawList.length === 0 ||
         !state.type ||
         !state.dateTime ||
         !state.startTime ||
         !state.endTime ||
         !isEndTimeValid();
-  
+
     return (
         <Fragment>
             <button
@@ -158,9 +166,10 @@ const DialogTambahUjian = ({
                                     placeholder="Batas Pengumpulan"
                                     className="input input-md input-bordered w-full "
                                 />
+                                {state.endTime && !isEndTimeValid() && <p className='text-error text-xs mt-3'>Waktu selesai harus lebih besar dari waktu mulai</p>}
                             </label>
                         </div>
-                        <label className="form-control w-full" >
+                        {/* <label className="form-control w-full" >
                             <div className="label">
                                 <span className="label-text font-bold">Dokumen</span>
                             </div>
@@ -172,7 +181,7 @@ const DialogTambahUjian = ({
                                 maxSize={5}
                                 resolution={["pdf"]}
                             />
-                        </label>
+                        </label> */}
 
                         <label className="form-control w-full" >
                             <div className="label">

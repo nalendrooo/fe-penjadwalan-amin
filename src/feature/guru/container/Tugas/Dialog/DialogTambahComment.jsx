@@ -2,8 +2,9 @@ import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { useToast } from '../../../../_global/component/Toast/ToastProvider';
+import { FaRegCommentDots } from 'react-icons/fa';
 
-const DialogUpdateNilai = ({
+const DialogTambahComment = ({
     data,
     refetch
 }) => {
@@ -11,31 +12,31 @@ const DialogUpdateNilai = ({
     const { addToast } = useToast()
     const [open, setOpen] = useState(false);
     const [state, setState] = useState({
-        nilai: 0,
+        comment: '',
     })
 
     useEffect(() => {
         setState({
-            nilai: data.nilai,
+            comment: data?.comment || '',
         })
     }, [data])
 
     const handleSubmit = async () => {
-        await axios.post(import.meta.env.VITE_BACKEND + `/guru/kelas/${id}/tugas/${id_tugas}/update-nilai`,
+        await axios.post(import.meta.env.VITE_BACKEND + `/guru/kelas/${id}/tugas/${id_tugas}/update-comment`,
             {
-                nilai: Number(state.nilai),
+                comment: state.comment,
                 id: data.id
             })
             .then((res) => {
-                addToast('Nilai berhasil diupdate', 'success')
+                addToast('Comment berhasil diupdate', 'success')
                 setOpen(false)
                 setState({
-                    nilai: 0,
+                    comment: '',
                 })
                 refetch()
             })
             .catch((err) => {
-                addToast('Nilai gagal diupdate', 'error')
+                addToast('Comment gagal diupdate', 'error')
                 console.log(err);
                 setOpen(false)
             });
@@ -43,10 +44,11 @@ const DialogUpdateNilai = ({
 
     return (
         <Fragment>
+
             <button
                 onClick={() => setOpen(true)}
-                className="btn btn-sm text-white bg-[#FFB922]">
-                Update Nilai
+                className="btn btn-sm text-white bg-[#22C55E]">
+                <FaRegCommentDots size={20} />
             </button>
             <dialog open={open} className="modal " onClose={() => setOpen(false)}>
                 <div className="modal-box ">
@@ -55,13 +57,13 @@ const DialogUpdateNilai = ({
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <h3 className="font-bold text-lg text-center text-primary">
-                        Update Nilai {data?.siswa?.nama}
+                        Tambah Komentar ({data?.siswa?.nama})
                     </h3>
                     <div className='flex gap-2 flex-col'>
                         <label className="form-control w-full mt-8" >
 
-                            <input
-                                type="number"
+                            {/* <input
+                                type="text"
                                 inputMode='numeric'
                                 onChange={(e) => {
                                     const inputValue = e.target.value;
@@ -71,8 +73,12 @@ const DialogUpdateNilai = ({
                                 placeholder="Nilai"
                                 value={state.nilai}
                                 className="input input-md input-bordered w-full"
-                            />
-
+                            /> */}
+                            <textarea
+                                placeholder="Komentar"
+                                value={state.comment}
+                                onChange={(e) => setState(prev => ({ ...prev, comment: e.target.value }))}
+                                className="textarea textarea-bordered textarea-md w-full " />
                         </label>
 
                         <div className="modal-action">
@@ -83,7 +89,7 @@ const DialogUpdateNilai = ({
                             </button>
                             <button
                                 onClick={handleSubmit}
-                                disabled={!state.nilai}
+                                disabled={!state.comment || state.comment === data.comment}
                                 className="btn btn-contained btn-primary w-1/2 text-white">
                                 Simpan
                             </button>
@@ -96,4 +102,4 @@ const DialogUpdateNilai = ({
     )
 }
 
-export default DialogUpdateNilai
+export default DialogTambahComment

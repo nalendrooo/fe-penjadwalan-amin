@@ -32,7 +32,8 @@ const DialogTambahTugas = ({
 
     useEffect(() => {
         if (response) {
-            axios.post(import.meta.env.VITE_BACKEND + `/guru/kelas/${id}/tugas`, { ...state, ...response })
+            axios.post(import.meta.env.VITE_BACKEND + `/guru/kelas/${id}/tugas`,
+                { ...state, deadlineAt: new Date(state.deadlineAt).toISOString(), ...response })
                 .then((res) => {
                     addToast('Tugas berhasil ditambahkan', 'success')
                     setOpen(false)
@@ -105,8 +106,8 @@ const DialogTambahTugas = ({
                             </div>
                             <input
                                 type="datetime-local"
-                                value={state.deadlineAt.slice(0, 16)} 
-                                onChange={handleChangeDate}
+                                value={state.deadlineAt}
+                                onChange={(e) => setState({ ...state, deadlineAt: e.target.value })}
                                 placeholder="Batas Pengumpulan"
                                 className="input input-md input-bordered w-full "
                             />
