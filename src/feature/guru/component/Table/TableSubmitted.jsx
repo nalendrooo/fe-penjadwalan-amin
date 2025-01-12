@@ -86,7 +86,7 @@ const TableSubmitted = ({
                                 {item.nilai ? item.nilai : '-'}
                             </td>
                             <td className='text-center'>
-                                {item.comment ? item.comment.slice(0, 20) + '...' : '-'}
+                                {item.comment ? item.comment : '-'}
                             </td>
                             <td>
                                 <span className={` flex items-center gap-2 justify-center text-xs font-medium px-2 py-1 rounded-full ${checkSubmissionStatus(item.createdAt, deadline).color}`}>
