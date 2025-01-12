@@ -11,6 +11,7 @@ import Content from "../../_global/layout/Content";
 import ReportContainer from "../container/Kelas/Detail/Report/ReportContainer";
 import UjianContainer from "../container/Kelas/Detail/Ujian/UjianContainer";
 import TemplateInfoRow from "../../_global/component/Row/TemplateInfoRow";
+import useProfile from "../../_global/hooks/useProfile";
 // import TabContentMateri from "../container/Kelas/Detail/Materi/TabContentMateri";
 // import TabContentSiswa from "../container/Detail/Siswa/TabContentSiswa";
 // import TabContentTugas from "../container/Detail/Tugas/TabContentTugas";
@@ -19,6 +20,7 @@ import TemplateInfoRow from "../../_global/component/Row/TemplateInfoRow";
 
 const DetailKelasSiswaView = () => {
     const { id } = useParams()
+    const profile = useProfile()
     const { data, loading } = useFetch(import.meta.env.VITE_BACKEND + '/siswa/kelas/' + id)
 
     const navigate = useNavigate()
@@ -48,8 +50,8 @@ const DetailKelasSiswaView = () => {
                             classNameLabel="whitespace-nowrap"
                             data={[
                                 {
-                                    label: "Nama Guru",
-                                    value: data?.user?.nama
+                                    label: "Nama",
+                                    value: profile?.nama
                                 },
                                 {
                                     label: "Mata Pelajaran",
