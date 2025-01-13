@@ -153,12 +153,12 @@ const TabContentReport = ({
                                 <td className='text-center'>
                                     {item.nilai ? item.nilai : '-'}
                                 </td>
-                                <td className='text-center'>
+                                <td className='text-left'>
                                     {item.comment ? item.comment : '-'}
                                 </td>
                                 <td>
                                     <span className={` flex items-center gap-2 justify-center text-xs font-medium px-2 py-1 rounded-full ${checkSubmissionStatus(item?.tugas?.createdAt, item?.tugas?.deadlineAt).color}`}>
-                                        <span>{checkSubmissionStatus(item?.tugas?.createdAt, item?.tugas?.deadlineAt).status}</span>
+                                        <span className='text-nowrap'>{checkSubmissionStatus(item?.tugas?.createdAt, item?.tugas?.deadlineAt).status}</span>
                                     </span>
                                 </td>
 

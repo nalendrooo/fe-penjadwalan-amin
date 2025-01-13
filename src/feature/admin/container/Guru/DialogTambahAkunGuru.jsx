@@ -81,20 +81,37 @@ const DialogTambahAkunGuru = ({
         setState((prev) => ({ ...prev, nama: value }));
     };
 
+    // const handleChangeTelephone = (e) => {
+    //     const value = e.target.value;
+    //     // if (!validateTelephone(value)) {
+    //     //     setErrors((prev) => ({
+    //     //         ...prev,
+    //     //         telephone: 'Format nomor telepon tidak valid',
+    //     //     }));
+    //     // } else {
+    //     //     setErrors((prev) => ({ ...prev, telephone: '' }));
+    //     // }
+
+    //     setState((prev) => ({ ...prev, telephone: value }));
+    // };
+
     const handleChangeTelephone = (e) => {
         const value = e.target.value;
-        // if (!validateTelephone(value)) {
-        //     setErrors((prev) => ({
-        //         ...prev,
-        //         telephone: 'Format nomor telepon tidak valid',
-        //     }));
-        // } else {
-        //     setErrors((prev) => ({ ...prev, telephone: '' }));
-        // }
-
-        setState((prev) => ({ ...prev, telephone: value }));
-    };
-
+    
+        // Batasi input hanya angka dan maksimal 13 karakter
+        const isValid = /^[0-9]{0,13}$/.test(value);
+    
+        if (!isValid) {
+          setErrors((prev) => ({
+            ...prev,
+            telephone: 'Nomor telepon hanya boleh berisi angka dan maksimal 13 karakter',
+          }));
+          return; // Jangan set state jika tidak valid
+        }
+    
+        setErrors((prev) => ({ ...prev, telephone: '' })); // Reset error jika valid
+        setState((prev) => ({ ...prev, telephone: value })); // Update state
+      };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
