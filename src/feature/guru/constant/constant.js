@@ -119,3 +119,233 @@ export const dummySiswa = [
     },
 ];
 
+export const dummyData = [
+    {
+      nama_product: "Muhammad Amin",
+      kode_produk: "Terlambat",
+      stock: 50,
+      kategory: [
+        { nama_kategori: "Elektronik" },
+        { nama_kategori: "Gadget" },
+      ],
+      tgl_update: "2025-01-19T14:00:00Z", // Format ISO 8601
+    },
+    {
+      nama_product: "Amini Saja",
+      kode_produk: "Terlambat",
+      stock: 30,
+      kategory: [{ nama_kategori: "Peralatan Rumah" }],
+      tgl_update: "2025-01-18T08:30:00Z",
+    },
+    {
+      nama_product: "Nalendro",
+      kode_produk: "Lebih Cepat",
+      stock: 100,
+      kategory: [
+        { nama_kategori: "Olahraga" },
+        { nama_kategori: "Hobi" },
+      ],
+      tgl_update: "2025-01-20T09:15:00Z",
+    },
+    {
+      nama_product: "Muhammad Amin",
+      kode_produk: "Terlambat",
+      stock: 50,
+      kategory: [
+        { nama_kategori: "Elektronik" },
+        { nama_kategori: "Gadget" },
+      ],
+      tgl_update: "2025-01-19T14:00:00Z", // Format ISO 8601
+    },
+    {
+      nama_product: "Amini Saja",
+      kode_produk: "Terlambat",
+      stock: 30,
+      kategory: [{ nama_kategori: "Peralatan Rumah" }],
+      tgl_update: "2025-01-18T08:30:00Z",
+    },
+    {
+      nama_product: "Nalendro",
+      kode_produk: "Lebih Cepat",
+      stock: 100,
+      kategory: [
+        { nama_kategori: "Olahraga" },
+        { nama_kategori: "Hobi" },
+      ],
+      tgl_update: "2025-01-20T09:15:00Z",
+    },
+    {
+      nama_product: "Muhammad Amin",
+      kode_produk: "Terlambat",
+      stock: 50,
+      kategory: [
+        { nama_kategori: "Elektronik" },
+        { nama_kategori: "Gadget" },
+      ],
+      tgl_update: "2025-01-19T14:00:00Z", // Format ISO 8601
+    },
+    {
+      nama_product: "Amini Saja",
+      kode_produk: "Terlambat",
+      stock: 30,
+      kategory: [{ nama_kategori: "Peralatan Rumah" }],
+      tgl_update: "2025-01-18T08:30:00Z",
+    },
+    {
+      nama_product: "Nalendro",
+      kode_produk: "Lebih Cepat",
+      stock: 100,
+      kategory: [
+        { nama_kategori: "Olahraga" },
+        { nama_kategori: "Hobi" },
+      ],
+      tgl_update: "2025-01-20T09:15:00Z",
+    },
+    {
+      nama_product: "Muhammad Amin",
+      kode_produk: "Terlambat",
+      stock: 50,
+      kategory: [
+        { nama_kategori: "Elektronik" },
+        { nama_kategori: "Gadget" },
+      ],
+      tgl_update: "2025-01-19T14:00:00Z", // Format ISO 8601
+    },
+    {
+      nama_product: "Amini Saja",
+      kode_produk: "Terlambat",
+      stock: 30,
+      kategory: [{ nama_kategori: "Peralatan Rumah" }],
+      tgl_update: "2025-01-18T08:30:00Z",
+    },
+    {
+      nama_product: "Nalendro",
+      kode_produk: "Lebih Cepat",
+      stock: 100,
+      kategory: [
+        { nama_kategori: "Olahraga" },
+        { nama_kategori: "Hobi" },
+      ],
+      tgl_update: "2025-01-20T09:15:00Z",
+    },
+    {
+      nama_product: "Muhammad Amin",
+      kode_produk: "Terlambat",
+      stock: 50,
+      kategory: [
+        { nama_kategori: "Elektronik" },
+        { nama_kategori: "Gadget" },
+      ],
+      tgl_update: "2025-01-19T14:00:00Z", // Format ISO 8601
+    },
+    {
+      nama_product: "Amini Saja",
+      kode_produk: "Terlambat",
+      stock: 30,
+      kategory: [{ nama_kategori: "Peralatan Rumah" }],
+      tgl_update: "2025-01-18T08:30:00Z",
+    },
+    {
+      nama_product: "Nalendro",
+      kode_produk: "Lebih Cepat",
+      stock: 100,
+      kategory: [
+        { nama_kategori: "Olahraga" },
+        { nama_kategori: "Hobi" },
+      ],
+      tgl_update: "2025-01-20T09:15:00Z",
+    },
+    {
+      nama_product: "Muhammad Amin",
+      kode_produk: "Terlambat",
+      stock: 50,
+      kategory: [
+        { nama_kategori: "Elektronik" },
+        { nama_kategori: "Gadget" },
+      ],
+      tgl_update: "2025-01-19T14:00:00Z", // Format ISO 8601
+    },
+    {
+      nama_product: "Amini Saja",
+      kode_produk: "Terlambat",
+      stock: 30,
+      kategory: [{ nama_kategori: "Peralatan Rumah" }],
+      tgl_update: "2025-01-18T08:30:00Z",
+    },
+    {
+      nama_product: "Nalendro",
+      kode_produk: "Lebih Cepat",
+      stock: 100,
+      kategory: [
+        { nama_kategori: "Olahraga" },
+        { nama_kategori: "Hobi" },
+      ],
+      tgl_update: "2025-01-20T09:15:00Z",
+    },
+    {
+      nama_product: "Muhammad Amin",
+      kode_produk: "Terlambat",
+      stock: 50,
+      kategory: [
+        { nama_kategori: "Elektronik" },
+        { nama_kategori: "Gadget" },
+      ],
+      tgl_update: "2025-01-19T14:00:00Z", // Format ISO 8601
+    },
+    {
+      nama_product: "Amini Saja",
+      kode_produk: "Terlambat",
+      stock: 30,
+      kategory: [{ nama_kategori: "Peralatan Rumah" }],
+      tgl_update: "2025-01-18T08:30:00Z",
+    },
+    {
+      nama_product: "Nalendro",
+      kode_produk: "Lebih Cepat",
+      stock: 100,
+      kategory: [
+        { nama_kategori: "Olahraga" },
+        { nama_kategori: "Hobi" },
+      ],
+      tgl_update: "2025-01-20T09:15:00Z",
+    },
+   
+    {
+      nama_product: "Nalendro",
+      kode_produk: "Lebih Cepat",
+      stock: 100,
+      kategory: [
+        { nama_kategori: "Olahraga" },
+        { nama_kategori: "Hobi" },
+      ],
+      tgl_update: "2025-01-20T09:15:00Z",
+    },
+    {
+      nama_product: "Muhammad Amin",
+      kode_produk: "Terlambat",
+      stock: 50,
+      kategory: [
+        { nama_kategori: "Elektronik" },
+        { nama_kategori: "Gadget" },
+      ],
+      tgl_update: "2025-01-19T14:00:00Z", // Format ISO 8601
+    },
+    {
+      nama_product: "Amini Saja",
+      kode_produk: "Terlambat",
+      stock: 30,
+      kategory: [{ nama_kategori: "Peralatan Rumah" }],
+      tgl_update: "2025-01-18T08:30:00Z",
+    },
+    {
+      nama_product: "Nalendro",
+      kode_produk: "Lebih Cepat",
+      stock: 100,
+      kategory: [
+        { nama_kategori: "Olahraga" },
+        { nama_kategori: "Hobi" },
+      ],
+      tgl_update: "2025-01-20T09:15:00Z",
+    },
+  ];
+  

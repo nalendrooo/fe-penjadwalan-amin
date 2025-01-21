@@ -20,6 +20,9 @@ import KelasSiswaView from "./feature/siswa/view/KelasSiswaView";
 import DetailKelasSiswaView from "./feature/siswa/view/DetailKelasSiswaView";
 import DetailTugasSiswaView from "./feature/siswa/view/DetailTugasSiswa";
 import AdminLayoutSidebar from "./feature/admin/layout/AdminLayoutSidebar";
+import { PDFViewer } from "@react-pdf/renderer";
+import PDFDocument from "./feature/_global/component/Template/PDFDocument";
+import { dummyData } from "./feature/guru/constant/constant";
 
 function App() {
   const router = createBrowserRouter([
@@ -60,6 +63,7 @@ function App() {
           path: "kelas/:id/tugas/:id_tugas",
           element: <DetailTugasSiswaView />,
         },
+
       ]
     },
     {
@@ -117,7 +121,16 @@ function App() {
           path: "kelas/:id/tugas/:id_tugas",
           element: <TugasKelasGuruView />,
         },
+
       ],
+    },
+    {
+      path: "/guru/kelas/:id/tugas/:id_tugas/raport",
+      element: (
+        <PDFViewer style={{ width: "100%", height: "100vh" }}>
+          <PDFDocument data={dummyData} />
+        </PDFViewer>
+      ),
     },
     {
       path: "/class",

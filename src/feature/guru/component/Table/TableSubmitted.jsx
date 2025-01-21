@@ -6,13 +6,14 @@ import { checkSubmissionStatus, formatDateToWIB } from '../../../_global/helper/
 import DialogUpdateNilai from '../../container/Tugas/Dialog/DialogUpdateNilai';
 import axios from 'axios';
 import DialogTambahComment from '../../container/Tugas/Dialog/DialogTambahComment';
+import { useNavigate } from 'react-router-dom';
 
 const TableSubmitted = ({
     data,
     deadline,
     refetch
 }) => {
-
+    const navigate = useNavigate()
     const handleDownload = async (url, folder = 'tugas-siswa') => {
         try {
             const response = await axios.get(`http://localhost:9000/backdoor/download/${folder}/${url}`, {
@@ -95,7 +96,11 @@ const TableSubmitted = ({
                             </td>
                             <td className='flex flex-col gap-4'>
                                 <div className="flex justify-center gap-2">
-
+                                    <button
+                                        onClick={() => window.open('http://localhost:9000/assets/tugas-siswa/' + item.filename)}
+                                        className="btn btn-sm text-white bg-[#0324fc]">
+                                        <FaRegEye size={20} />
+                                    </button>
                                     <button
                                         onClick={() => handleDownload(item.filename)}
                                         className="btn btn-sm text-white bg-[#866FF9]">

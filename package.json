@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.1.6",
     "axios": "^1.7.7",
     "daisyui": "^4.12.14",
     "jwt-decode": "^4.0.0",

@@ -4,6 +4,11 @@ import useFetch from '../../../_global/hooks/useFetch'
 import TableNotSubmitted from '../../component/Table/TableNotSubmitted'
 import TableSubmitted from '../../component/Table/TableSubmitted'
 import ReactApexChart from 'react-apexcharts'
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer'
+import PDFDocument from '../../../_global/component/Template/PDFDocument'
+import { dummyData } from '../../constant/constant'
+import { checkSubmissionStatus } from '../../../_global/helper/formatter'
+import useProfile from '../../../_global/hooks/useProfile'
 
 const ListTugasSiswa = ({
     deadline
@@ -37,6 +42,8 @@ const ListTugasSiswa = ({
 
 
     });
+
+
     const formatDate = (dateString) => {
         const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
         const date = new Date(dateString);
@@ -134,6 +141,19 @@ const ListTugasSiswa = ({
             series: [data?.submited?.length, data?.notSubmited?.length]
         })
     }, [data])
+   const mengumpulkan = data?.submited?.map(item => ({
+        nama: item.siswa.nama,
+        nilai: item.nilai ?? '-',
+        status: checkSubmissionStatus(item.createdAt, deadline).status
+    }))
+
+   const belumMengumpulkan = data?.notSubmited?.map(item => ({
+        nama: item.user.nama,
+        nilai: '-',
+        status: '-'
+    }))
+const profile = useProfile()
+    const raport = [...(mengumpulkan || []), ...(belumMengumpulkan || [])]
 
     if (loading) {
         return (
@@ -154,9 +174,19 @@ const ListTugasSiswa = ({
                 </div>
             </div>
             <div className='bg-white rounded-2xl p-4'>
-                <h2 className='text-xl font-bold mb-4'>Daftar Siswa yang sudah mengerjakan</h2>
+                <div className='flex justify-between items-center'>
+                    <h2 className='text-xl font-bold mb-4'>Daftar Siswa yang sudah mengerjakan</h2>
+                    {/* <button className="btn btn-primary btn-sm text-white "
+                        onClick={() => PDFDownloadLink({
+                            document: <PDFDocument data={data?.submited} />,
+                            fileName: 'raport.pdf',
+                        })}
+                    >Download Raport</button> */}
+                    <DownloadButton raport={raport} title={data?.title} />
+                </div>
                 <TableSubmitted data={data?.submited} deadline={deadline} refetch={refetch} />
             </div>
+
             <div className='bg-white rounded-2xl p-4'>
                 <h2 className='text-xl font-bold mb-4'>Daftar Siswa yang belum mengerjakan</h2>
                 <TableNotSubmitted data={data?.notSubmited} />
@@ -164,5 +194,25 @@ const ListTugasSiswa = ({
         </Fragment>
     )
 }
+
+function DownloadButton({ raport, title }) {
+    return (
+        <PDFDownloadLink
+            document={<PDFDocument data={raport} title={title} />}
+            fileName={`Raport-${title} - ${new Date().toLocaleDateString()}.pdf`}
+        >
+            {({ loading }) =>
+                loading ? (
+                    'Loading document...'
+                ) : (
+                    <button className="btn btn-primary btn-sm text-white">
+                        Download Raport
+                    </button>
+                )
+            }
+        </PDFDownloadLink>
+    );
+}
+
 
 export default ListTugasSiswa
