@@ -1,5 +1,12 @@
 import React from "react";
-import { Document, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+} from "@react-pdf/renderer";
 // import { convertDateFormat } from "@/lib/helper";
 
 const styles = StyleSheet.create({
@@ -35,7 +42,7 @@ const styles = StyleSheet.create({
   tableColNama: {
     width: "40%",
     borderStyle: "solid",
-    textAlign: 'left',
+    textAlign: "left",
     borderWidth: 1,
     borderLeftWidth: 0,
     borderTopWidth: 0,
@@ -84,36 +91,46 @@ const styles = StyleSheet.create({
   },
   italic: {
     fontStyle: "italic",
-  }
+  },
 });
 
 const PDFDocument = ({ data, title }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={{
-          paddingHorizontal: 20,
-          paddingVertical: 20,
-          display: 'flex',
-          gap: 25,
-          flexDirection: 'row',
-          alignItems: 'center',
-          borderBottom: '1px solid lightgray'
-        }}>
+        <View
+          style={{
+            paddingHorizontal: 20,
+            paddingVertical: 20,
+            display: "flex",
+            gap: 25,
+            flexDirection: "row",
+            alignItems: "center",
+            borderBottom: "1px solid lightgray",
+          }}
+        >
           <Image
             src="/assets/logo/logo_smk_maarif.png"
             style={{ width: 80, height: 80 }}
           />
-          <div style={{ display: 'flex', gap: 5 }}>
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>SMK Ma'arif Nu Margasari 52</Text>
-            <Text style={{ fontSize: 10 }}>Alamat: Margasari, Kec. Margasari, Kabupaten Tegal </Text>
+          <div style={{ display: "flex", gap: 5 }}>
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+              SMK Ma'arif Nu Margasari{" "}
+            </Text>
+            <Text style={{ fontSize: 10 }}>
+              Alamat: JL.Raya Selatan Margasari, Kec. Margasari, Kabupaten Tegal{" "}
+            </Text>
             <Text style={{ fontSize: 10 }}>Provinsi: Jawa Tengah 52463</Text>
             <Text style={{ fontSize: 10 }}>Negara: Indonesia</Text>
           </div>
         </View>
         <hr />
         <View style={styles.section}>
-          <Text style={{ fontSize: 14, fontWeight: "bold", textAlign: 'center' }}>Daftar Nilai Hasil {title}</Text>
+          <Text
+            style={{ fontSize: 14, fontWeight: "bold", textAlign: "center" }}
+          >
+            Daftar Nilai Hasil {title}
+          </Text>
 
           <View style={styles.table}>
             <View style={styles.tableRow}>
@@ -136,21 +153,22 @@ const PDFDocument = ({ data, title }) => {
               <Text style={styles.tableCell}>Last Update</Text>
             </View> */}
             </View>
-            {data?.length > 0 && data?.map((item, index) => (
-              <View style={styles.tableRow} key={index}>
-                <View style={styles.tableColNo}>
-                  <Text style={styles.tableCell}>{index + 1}</Text>
-                </View>
-                <View style={styles.tableColNama}>
-                  <Text style={styles.tableCellCate}>{item?.nama}</Text>
-                </View>
-                <View style={styles.tableColKode}>
-                  <Text style={styles.tableCell}>{item?.status}</Text>
-                </View>
-                <View style={styles.tableColStock}>
-                  <Text style={styles.tableCell}>{item?.nilai}</Text>
-                </View>
-                {/* <View style={styles.tableColCate}>
+            {data?.length > 0 &&
+              data?.map((item, index) => (
+                <View style={styles.tableRow} key={index}>
+                  <View style={styles.tableColNo}>
+                    <Text style={styles.tableCell}>{index + 1}</Text>
+                  </View>
+                  <View style={styles.tableColNama}>
+                    <Text style={styles.tableCellCate}>{item?.nama}</Text>
+                  </View>
+                  <View style={styles.tableColKode}>
+                    <Text style={styles.tableCell}>{item?.status}</Text>
+                  </View>
+                  <View style={styles.tableColStock}>
+                    <Text style={styles.tableCell}>{item?.nilai}</Text>
+                  </View>
+                  {/* <View style={styles.tableColCate}>
                 {item.kategory.map((items) => (
                   <Text style={styles.tableCellCate}>
                     {items.nama_kategori}
@@ -162,14 +180,13 @@ const PDFDocument = ({ data, title }) => {
                   {convertDateFormat(item.tgl_update)}
                 </Text>
               </View> */}
-              </View>
-            ))}
+                </View>
+              ))}
           </View>
-
         </View>
       </Page>
     </Document>
-  )
+  );
 };
 
 export default PDFDocument;
