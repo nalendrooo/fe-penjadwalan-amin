@@ -5,7 +5,7 @@ import useFetch from '../../_global/hooks/useFetch';
 import TabContentSiswa from "../container/Kelas/Detail/Siswa/TabContentSiswa";
 import Search from "../../_global/component/Input/Search";
 import MateriContainer from "../container/Kelas/Detail/Materi/MateriContainer";
-import SiswaContainer from "../container/Kelas/Detail/Siswa/SIswaContainer";
+import SiswaContainer from "../container/Kelas/Detail/Siswa/SiswaContainer";
 import TugasContainer from "../container/Kelas/Detail/Tugas/TugasContainer";
 import Content from "../../_global/layout/Content";
 import ReportContainer from "../container/Kelas/Detail/Report/ReportContainer";
