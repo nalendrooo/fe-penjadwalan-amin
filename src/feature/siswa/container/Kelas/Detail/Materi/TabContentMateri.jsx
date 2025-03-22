@@ -16,7 +16,7 @@ const TabContentMateri = ({
 
     const handleDownload = async (url) => {
         try {
-            const response = await axios.get(`import.meta.env.VITE_BACKEND/backdoor/download/materi/${url}`, {
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND}/backdoor/download/materi/${url}`, {
                 responseType: 'blob', // Untuk memastikan file diterima sebagai binary data
             });
 
