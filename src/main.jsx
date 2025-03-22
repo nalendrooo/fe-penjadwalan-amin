@@ -7,7 +7,7 @@ import { ToastProvider } from './feature/_global/component/Toast/ToastProvider.j
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ToastProvider>
-      <App />
+      {/* <App /> */}Test
     </ToastProvider>
   </React.StrictMode>,
 )
