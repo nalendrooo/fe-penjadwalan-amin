@@ -64,7 +64,7 @@ const AdminLayoutSidebar = ({ children }) => {
                 aria-label="Sidebar"
             >
                 <div className='flex justify-center my-4'>
-                    <img src='/assets/logo/logo_smk_maarif.png' alt="logo" width={100} height={100} />
+                    <img src='/logo_smk_maarif.png' alt="logo" width={100} height={100} />
                 </div>
                 <div className=" h-[calc(100vh-150px)] flex flex-col p-2 justify-between overflow-y-auto" >
                     <ul className="space-y-2 font-medium ">

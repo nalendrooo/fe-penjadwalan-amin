@@ -25,7 +25,7 @@ const Navbar = () => {
           to={"/" + pathname}
           className="btn btn-ghost  text-white"
         >
-          <img src='/assets/logo/logo_smk_maarif.png' alt="logo" style={{ width: "50px" }} />
+          <img src='/logo_smk_maarif.png' alt="logo" style={{ width: "50px" }} />
         </Link>
       </div>
       {profile && profile.role === 'siswa' &&
@@ -43,7 +43,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="/assets/image/default-profile.png" />
+                <img src="/default-profile.png" />
               </div>
             </label>
             <ul

@@ -64,7 +64,7 @@ const TabContentSiswa = ({
                                         <div className="mask mask-squircle h-12 w-12">
                                             <img
                                                 // src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                                src='/assets/image/default-profile.png'
+                                                src='/default-profile.png'
                                                 alt="Avatar Tailwind CSS Component" />
                                         </div>
                                     </div>

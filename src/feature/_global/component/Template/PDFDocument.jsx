@@ -110,7 +110,7 @@ const PDFDocument = ({ data, title }) => {
           }}
         >
           <Image
-            src="/assets/logo/logo_smk_maarif.png"
+            src="/logo_smk_maarif.png"
             style={{ width: 80, height: 80 }}
           />
           <div style={{ display: "flex", gap: 5 }}>
