@@ -16,7 +16,7 @@ const TableSubmitted = ({
     const navigate = useNavigate()
     const handleDownload = async (url, folder = 'tugas-siswa') => {
         try {
-            const response = await axios.get(`http://localhost:9000/backdoor/download/${folder}/${url}`, {
+            const response = await axios.get(`import.meta.env.VITE_BACKEND/backdoor/download/${folder}/${url}`, {
                 responseType: 'blob', // Untuk memastikan file diterima sebagai binary data
             });
 
@@ -97,7 +97,7 @@ const TableSubmitted = ({
                             <td className='flex flex-col gap-4'>
                                 <div className="flex justify-center gap-2">
                                     <button
-                                        onClick={() => window.open('http://localhost:9000/assets/tugas-siswa/' + item.filename)}
+                                        onClick={() => window.open('import.meta.env.VITE_BACKEND/assets/tugas-siswa/' + item.filename)}
                                         className="btn btn-sm text-white bg-[#0324fc]">
                                         <FaRegEye size={20} />
                                     </button>

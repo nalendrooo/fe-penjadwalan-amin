@@ -18,7 +18,7 @@ const TugasKelasGuruView = () => {
 
     const handleDownload = async (url, folder = 'tugas') => {
         try {
-            const response = await axios.get(`http://localhost:9000/backdoor/download/${folder}/${url}`, {
+            const response = await axios.get(`import.meta.env.VITE_BACKEND/backdoor/download/${folder}/${url}`, {
                 responseType: 'blob', // Untuk memastikan file diterima sebagai binary data
             });
 
