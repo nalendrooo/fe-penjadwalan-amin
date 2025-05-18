@@ -69,7 +69,7 @@ const ListKelasAdminDetailView = () => {
                         <div key={item.id} className='flex flex-row gap-2'>
                           <p>{item?.user?.nama}</p>
                           <p>-</p>
-                          <p>{item?.user?.nisn || <span className='text-red-500'>NISN Tidak Ditemukan</span>}</p>
+                          <p>{item?.user?.nis || <span className='text-red-500'>NISN Tidak Ditemukan</span>}</p>
                         </div>
                       )
                     })}
