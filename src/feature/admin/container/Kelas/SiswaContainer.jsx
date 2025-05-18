@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react'
-import Search from '../../../../_global/component/Input/Search'
-import DialogTambahSiswa from '../Dialog/DialogTambahSiswa'
+// import DialogTambahSiswa from '../Dialog/DialogTambahSiswa'
 import TabContentSiswa from './TabContentSiswa'
 import { useParams } from 'react-router-dom'
-import useFetch from '../../../../_global/hooks/useFetch'
+import Search from '../../../_global/component/Input/Search'
+import useFetch from '../../../_global/hooks/useFetch'
+import DialogTambahSiswa from './DialogTambahSiswa'
 
 const SiswaContainer = () => {
     const { id } = useParams()
@@ -14,7 +15,7 @@ const SiswaContainer = () => {
             <div role="tabpanel" className="tab-content ">
                 <div className='flex mt-10 justify-between items-center   '>
                     <Search placeholder='Cari Nama Siswa' />
-                    {/* <DialogTambahSiswa refetch={refetch} /> */}
+                    <DialogTambahSiswa refetch={refetch} />
                 </div>
                 <TabContentSiswa data={data} loading={loading} refetch={refetch}/>
             </div>

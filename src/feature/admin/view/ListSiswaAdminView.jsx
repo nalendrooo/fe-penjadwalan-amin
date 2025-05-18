@@ -4,11 +4,12 @@ import { MdDeleteOutline } from 'react-icons/md';
 import { useSearchParams } from 'react-router-dom';
 import useFetch from '../../_global/hooks/useFetch';
 import Search from '../../_global/component/Input/Search';
+import DialogTambahAkunSiswa from '../container/Siswa/DialogTambahAkunSiswa';
 
 const ListSiswaAdminView = () => {
   const [searchParams] = useSearchParams()
   const search = searchParams.get('search') || ''
-  const { data, loading } = useFetch(import.meta.env.VITE_BACKEND + '/admin/siswa')
+  const { data, loading, refetch } = useFetch(import.meta.env.VITE_BACKEND + '/admin/siswa')
 
   const filteredData = data?.filter((item) => item.nama.toLowerCase().includes(search?.toLowerCase())) || []
 
@@ -36,7 +37,7 @@ const ListSiswaAdminView = () => {
             <div className="relative flex flex-row">
               <Search placeholder="Cari nama siswa" />
             </div>
-            
+            <DialogTambahAkunSiswa  refetch={refetch} />
           </div>
         </div>
         <div className="overflow-x-auto bg-white mt-4 rounded-lg">

@@ -141,7 +141,7 @@ const RegisterView = () => {
     <div className="grid grid-cols-3 gap-4">
 
       <div className="col-span-3 sm:col-span-1 bg-[#EBF3FC] p-4 h-screen flex justify-center items-center">
-        <img src='/assets/logo/logo_smk_maarif.png' alt="logo" width={200} height={200} />
+        <img src='/logo_smk_maarif.png' alt="logo" width={200} height={200} />
 
       </div>
 

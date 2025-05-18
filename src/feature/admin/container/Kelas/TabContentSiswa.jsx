@@ -1,15 +1,35 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { MdDeleteOutline } from "react-icons/md";
+import { useParams, useSearchParams } from 'react-router-dom';
+import axios from 'axios';
+import { useToast } from '../../../_global/component/Toast/ToastProvider';
 
 const TabContentSiswa = ({
     data,
-    loading
+    loading,
+    refetch
 }) => {
-   
+    const { id } = useParams()
     const [searchParams] = useSearchParams()
+    const { addToast } = useToast()
 
     const search = searchParams.get('search') || ''
     const filteredData = data?.filter((item) => item.user.nama.toLowerCase().includes(search?.toLowerCase())) || []
+
+    const handleDelete = async (su) => {
+        try {
+            const response = await axios.delete(
+                `${import.meta.env.VITE_BACKEND}/guru/kelas/${id}/siswa`,
+                { data: { siswaIds: [su] } }
+            );
+
+            addToast('Siswa berhasil dihapus', 'success');
+            refetch();
+        } catch (error) {
+            console.error(error);
+            addToast('Siswa gagal dihapus', 'error');
+        }
+    };
 
     if (loading) {
         return (
@@ -29,6 +49,7 @@ const TabContentSiswa = ({
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Telephone</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,6 +77,13 @@ const TabContentSiswa = ({
                             </td>
                             <td>
                                 {user.telephone}
+                            </td>
+                            <td>
+                                <button
+                                    onClick={() => handleDelete(user.id)}
+                                    className="btn btn-square btn-sm text-white bg-red-500">
+                                    <MdDeleteOutline size={20} />
+                                </button>
                             </td>
                         </tr>
                     ))}

@@ -98,7 +98,7 @@ const LoginView = () => {
     <div className="grid grid-cols-3 gap-4">
 
       <div className="col-span-3 sm:col-span-1 bg-[#EBF3FC] p-4 h-screen flex justify-center items-center">
-        <img src='/assets/logo/logo_smk_maarif.png' alt="logo" width={200} height={200} />
+        <img src='/logo_smk_maarif.png' alt="logo" width={200} height={200} />
       </div>
 
       <div className="col-span-3 sm:col-span-2 p-4 flex justify-center items-center">
@@ -140,7 +140,7 @@ const LoginView = () => {
           <button
             disabled={hasErrors}
             onClick={handleSubmit} className='w-full btn btn-primary mt-4'>Masuk</button>
-          <p className="text-gray-500 text-sm mb-4 text-center leading-none">Belum punya akun? <a className='text-primary hover:underline font-semibold' href="/register">Daftar Sebagai Siswa</a></p>
+          {/* <p className="text-gray-500 text-sm mb-4 text-center leading-none">Belum punya akun? <a className='text-primary hover:underline font-semibold' href="/register">Daftar Sebagai Siswa</a></p> */}
         </div>
 
       </div>
