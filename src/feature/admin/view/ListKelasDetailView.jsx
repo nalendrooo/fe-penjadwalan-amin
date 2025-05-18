@@ -8,7 +8,7 @@ import { formatDateToTime } from '../../_global/helper/formatter';
 import Search from '../../_global/component/Input/Search';
 import DialogTambahKelas from '../container/Kelas/DialogTambahKelas';
 
-const ListKelasAdminView = () => {
+const ListKelasAdminDetailView = () => {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const search = searchParams.get('search') || ''
@@ -48,15 +48,9 @@ const ListKelasAdminView = () => {
             <thead>
               <tr>
                 <th>No</th>
-                <th>Nama</th>
-                <th >Guru</th>
-                <th >Email Guru</th>
-                <th >Mata Pelajaran</th>
-                <th >Waktu</th>
-                {/* <th>Status</th> */}
-                <th>Dibuat</th>
-                <th>Aksi</th>
-                {/* <th>Aksi</th> */}
+                <th>Nama Kelas</th>
+                <th >Wali Kelas</th>
+                <th >Daftar Siswa & NISN</th>
               </tr>
             </thead>
             <tbody>
@@ -70,14 +64,17 @@ const ListKelasAdminView = () => {
                     {item?.user?.nama || '-'}
                   </td>
                   <td >
-                    {item?.user?.email || '-'}
+                    {item?.classStudent?.map((item) => {
+                      return (
+                        <div key={item.id} className='flex flex-row gap-2'>
+                          <p>{item?.user?.nama}</p>
+                          <p>-</p>
+                          <p>{item?.user?.nisn || <span className='text-red-500'>NISN Tidak Ditemukan</span>}</p>
+                        </div>
+                      )
+                    })}
                   </td>
-                  <td >
-                    {item?.user?.mataPelajaranGuru?.[0]?.mataPelajaran?.title || '-'}
-                  </td>
-                  <td>
-                    {item?.scheduleClasses?.length > 0 ? item?.scheduleClasses?.[0]?.day?.title : '-'}, {item?.scheduleClasses?.[0]?.startTime} - {item?.scheduleClasses?.[0]?.endTime}
-                  </td>
+                 
                   {/* <td>
                     <input
                       readOnly
@@ -86,16 +83,16 @@ const ListKelasAdminView = () => {
                       checked={item.isActive}
                     />
                   </td> */}
-                  <td>
+                  {/* <td>
                     {formatDateToTime(item?.createdAt)}
-                  </td>
-                  <td>
+                  </td> */}
+                  {/* <td>
                     <button
                       onClick={() => navigate(`/admin/kelas/${item.id}`)}
                       className="btn btn-square btn-sm text-white bg-blue-500">
                       <FaEye size={20} />
                     </button>
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>
@@ -106,4 +103,4 @@ const ListKelasAdminView = () => {
   )
 }
 
-export default ListKelasAdminView
+export default ListKelasAdminDetailView

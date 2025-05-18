@@ -23,6 +23,8 @@ import AdminLayoutSidebar from "./feature/admin/layout/AdminLayoutSidebar";
 import { PDFViewer } from "@react-pdf/renderer";
 import PDFDocument from "./feature/_global/component/Template/PDFDocument";
 import { dummyData } from "./feature/guru/constant/constant";
+import DetailKelasAdminView from "./feature/admin/view/DetailKelasAdminView";
+import ListKelasAdminDetailView from "./feature/admin/view/ListKelasDetailView";
 
 function App() {
   const router = createBrowserRouter([
@@ -30,10 +32,10 @@ function App() {
       path: "/",
       element: <LoginView />
     },
-    {
-      path: "/register",
-      element: <RegisterView />
-    },
+    // {
+    //   path: "/register",
+    //   element: <RegisterView />
+    // },
     {
       path: "/siswa",
       element:
@@ -89,6 +91,14 @@ function App() {
         {
           path: "kelas",
           element: <ListKelasAdminView />,
+        },
+        {
+          path: "data-kelas",
+          element: <ListKelasAdminDetailView />,
+        },
+        {
+          path: "kelas/:id",
+          element: <DetailKelasAdminView />,
         },
         {
           path: "guru",
