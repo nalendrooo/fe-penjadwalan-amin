@@ -25,7 +25,7 @@ const BerandaSiswaView = () => {
               to="/siswa/kelas"
               className="btn bg-white text-darkblue font-Montserrat font-bold text-base rounded-lg py-2 w-[100%]"
             >
-              Lihat Semua Kelas
+              Lihat Kelas
             </Link>
           </div>
         </div>
