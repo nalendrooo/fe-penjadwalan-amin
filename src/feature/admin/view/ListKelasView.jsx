@@ -40,7 +40,7 @@ const ListKelasAdminView = () => {
             <div className="relative flex flex-row">
               <Search placeholder="Cari nama kelas" />
             </div>
-            <DialogTambahKelas refetch={refetch} />
+            <DialogTambahKelas refetch={refetch} data={data}/>
           </div>
         </div>
         <div className="overflow-x-auto bg-white mt-4 rounded-lg">

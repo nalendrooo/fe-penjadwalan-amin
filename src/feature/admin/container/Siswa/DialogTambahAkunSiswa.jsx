@@ -255,7 +255,7 @@ const DialogTambahAkunSiswa = ({
                                 onChange={handleChangeNis}
                             />
                         </label>
-                        <label className="form-control w-full" >
+                        {/* <label className="form-control w-full" >
                             <div className="label">
                                 <span className="label-text font-bold">Wali murid</span>
                             </div>
@@ -267,7 +267,7 @@ const DialogTambahAkunSiswa = ({
 
                                 onChange={handleChangeWali}
                             />
-                        </label>
+                        </label> */}
                         {/* <label className="form-control w-full" >
                             <div className="label">
                                 <span className="label-text font-bold">Mata Pelajaran</span>
