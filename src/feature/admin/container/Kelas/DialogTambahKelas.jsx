@@ -210,11 +210,7 @@ const DialogTambahKelas = ({
 
     const [guru, setGuru] = useState(0);
 
-    // Cek konflik jadwal untuk disable button
-    const hasScheduleConflict = () => {
-        if (!guru || !jadwal.dayId || !jadwal.startTime || !jadwal.endTime) return false;
-        return checkScheduleConflict(guru, jadwal.dayId, jadwal.startTime, jadwal.endTime).conflict;
-    };
+
 
     // Cek validasi waktu
     const hasInvalidTime = () => {
@@ -253,7 +249,7 @@ const DialogTambahKelas = ({
                     // Mapping dayId ke nama hari (sesuaikan dengan struktur data Anda)
                     const dayMapping = {
                         1: "Senin",
-                        2: "Selasa", 
+                        2: "Selasa",
                         3: "Rabu",
                         4: "Kamis",
                         5: "Jumat",
@@ -291,10 +287,10 @@ const DialogTambahKelas = ({
     const handleSubmit = () => {
         // Validasi konflik jadwal sebelum submit
         const conflictCheck = checkScheduleConflict(guru, jadwal.dayId, jadwal.startTime, jadwal.endTime);
-        
+
         if (conflictCheck.conflict) {
             addToast(
-                `Jadwal bentrok! Guru sudah mengajar kelas "${conflictCheck.conflictClass}" pada hari ${conflictCheck.conflictDay} jam ${conflictCheck.conflictTime}`, 
+                `Jadwal bentrok! Guru sudah mengajar kelas "${conflictCheck.conflictClass}" pada hari ${conflictCheck.conflictDay} jam ${conflictCheck.conflictTime}`,
                 'error'
             );
             return;
@@ -344,12 +340,18 @@ const DialogTambahKelas = ({
     const { data: listGuru } = useFetch(import.meta.env.VITE_BACKEND + '/admin/guru')
     const { data: listHari } = useFetch(import.meta.env.VITE_BACKEND + '/hari')
 
+    // Cek konflik jadwal untuk disable button
+    const hasScheduleConflict = () => {
+        if (!guru || !jadwal.dayId || !jadwal.startTime || !jadwal.endTime) return false;
+        return checkScheduleConflict(guru, jadwal.dayId, jadwal.startTime, jadwal.endTime).conflict;
+    };
+
     // Fungsi untuk menampilkan peringatan jika ada konflik saat user mengisi form
     const getScheduleWarning = () => {
         if (!guru || !jadwal.dayId || !jadwal.startTime || !jadwal.endTime) return null;
 
         const conflictCheck = checkScheduleConflict(guru, jadwal.dayId, jadwal.startTime, jadwal.endTime);
-        
+
         if (conflictCheck.conflict) {
             return (
                 <div className="alert alert-warning mt-2">
