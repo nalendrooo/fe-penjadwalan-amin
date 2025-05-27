@@ -212,6 +212,7 @@ const DialogTambahKelas = ({
 
 
 
+
     // Cek validasi waktu
     const hasInvalidTime = () => {
         if (!jadwal.startTime || !jadwal.endTime) return false;
@@ -222,7 +223,6 @@ const DialogTambahKelas = ({
         return timeToMinutes(jadwal.startTime) >= timeToMinutes(jadwal.endTime);
     };
 
-    const disabled = !state.title || !state.description || !guru || !jadwal.dayId || !jadwal.startTime || !jadwal.endTime || hasScheduleConflict() || hasInvalidTime()
 
     // Fungsi untuk mengecek konflik jadwal
     const checkScheduleConflict = (guruId, dayId, startTime, endTime) => {
@@ -284,6 +284,14 @@ const DialogTambahKelas = ({
         return { conflict: false };
     };
 
+    // Cek konflik jadwal untuk disable button
+    const hasScheduleConflict = () => {
+        if (!guru || !jadwal.dayId || !jadwal.startTime || !jadwal.endTime) return false;
+        return checkScheduleConflict(guru, jadwal.dayId, jadwal.startTime, jadwal.endTime).conflict;
+    };
+
+    const disabled = !state.title || !state.description || !guru || !jadwal.dayId || !jadwal.startTime || !jadwal.endTime || hasScheduleConflict() || hasInvalidTime()
+
     const handleSubmit = () => {
         // Validasi konflik jadwal sebelum submit
         const conflictCheck = checkScheduleConflict(guru, jadwal.dayId, jadwal.startTime, jadwal.endTime);
@@ -340,11 +348,6 @@ const DialogTambahKelas = ({
     const { data: listGuru } = useFetch(import.meta.env.VITE_BACKEND + '/admin/guru')
     const { data: listHari } = useFetch(import.meta.env.VITE_BACKEND + '/hari')
 
-    // Cek konflik jadwal untuk disable button
-    const hasScheduleConflict = () => {
-        if (!guru || !jadwal.dayId || !jadwal.startTime || !jadwal.endTime) return false;
-        return checkScheduleConflict(guru, jadwal.dayId, jadwal.startTime, jadwal.endTime).conflict;
-    };
 
     // Fungsi untuk menampilkan peringatan jika ada konflik saat user mengisi form
     const getScheduleWarning = () => {
