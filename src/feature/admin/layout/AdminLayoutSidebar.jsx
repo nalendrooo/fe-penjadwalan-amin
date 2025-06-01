@@ -46,13 +46,13 @@ const AdminLayoutSidebar = ({ children }) => {
             path: '/admin/kelas',
 
         },
-        {
-            key: 'Detail Kelas',
-            label: 'Detail Kelas',
-            icon: <MdSettingsInputComponent />, // Ikon untuk Settings
-            path: '/admin/data-kelas',
+        // {
+        //     key: 'Detail Kelas',
+        //     label: 'Detail Kelas',
+        //     icon: <MdSettingsInputComponent />, // Ikon untuk Settings
+        //     path: '/admin/data-kelas',
 
-        },
+        // },
 
     ];
 

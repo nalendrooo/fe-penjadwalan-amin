@@ -28,12 +28,12 @@ const KelasSiswaView = () => {
                 Kembali
             </button>
             <div className=" max-w-[90vw] mx-auto">
-                <div className="flex flex-grow justify-between items-start w-full mt-4">
+                {/* <div className="flex flex-grow justify-between items-start w-full mt-4">
                     <h1 className="text-base lg:text-[24px] font-bold">Jadwal Hari Ini</h1>
                     <div className="relative flex flex-row">
                         <Search placeholder="Cari nama kelas" />
                     </div>
-                </div>
+                </div> */}
 
                 {loading &&
                     <div className="flex justify-center items-center h-screen">

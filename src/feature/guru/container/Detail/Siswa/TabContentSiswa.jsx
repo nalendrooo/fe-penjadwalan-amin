@@ -50,6 +50,7 @@ const TabContentSiswa = ({
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Telephone</th>
+                        <th>NISN</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -78,6 +79,9 @@ const TabContentSiswa = ({
                             </td>
                             <td>
                                 {user.telephone}
+                            </td>
+                            <td>
+                                {user.nis}
                             </td>
                             <td>
                                 <button

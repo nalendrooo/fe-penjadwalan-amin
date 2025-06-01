@@ -49,7 +49,7 @@ const ListSiswaAdminView = () => {
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Telephone</th>
-                {/* <th>Aksi</th> */}
+                <th>NISN</th>
               </tr>
             </thead>
             <tbody>
@@ -75,6 +75,9 @@ const ListSiswaAdminView = () => {
                   </td>
                   <td>
                     {user.telephone}
+                  </td>
+                  <td>
+                    {user.nis}
                   </td>
                   {/* <td>
                     <button className="btn btn-square btn-sm text-white bg-red-500">
