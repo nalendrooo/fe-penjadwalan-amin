@@ -1,12 +1,14 @@
 import React from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 import { MdDeleteOutline } from 'react-icons/md';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import useFetch from '../../_global/hooks/useFetch';
 import Search from '../../_global/component/Input/Search';
 import DialogTambahAkunSiswa from '../container/Siswa/DialogTambahAkunSiswa';
+import DialogUpdatePassword from '../container/Siswa/DialogUpdatePassword';
 
 const ListSiswaAdminView = () => {
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const search = searchParams.get('search') || ''
   const { data, loading, refetch } = useFetch(import.meta.env.VITE_BACKEND + '/admin/siswa')
@@ -50,11 +52,12 @@ const ListSiswaAdminView = () => {
                 <th>Email</th>
                 <th>Telephone</th>
                 <th>NISN</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
               {filteredData?.map((user, index) => (
-                <tr key={index} className='border-b' onClick={() => navigate(`/admin/siswa/${user.id}`)}>
+                <tr key={index} className='border-b' >
                   <th>{index + 1}</th>
                   {/* <td>
                     <div className="flex items-center gap-3">
@@ -78,6 +81,9 @@ const ListSiswaAdminView = () => {
                   </td>
                   <td>
                     {user.nis}
+                  </td>
+                  <td>
+                    <DialogUpdatePassword refetch={refetch} data={user}/>
                   </td>
                   {/* <td>
                     <button className="btn btn-square btn-sm text-white bg-red-500">

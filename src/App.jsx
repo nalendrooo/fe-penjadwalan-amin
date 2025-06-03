@@ -25,6 +25,7 @@ import PDFDocument from "./feature/_global/component/Template/PDFDocument";
 import { dummyData } from "./feature/guru/constant/constant";
 import DetailKelasAdminView from "./feature/admin/view/DetailKelasAdminView";
 import ListKelasAdminDetailView from "./feature/admin/view/ListKelasDetailView";
+import Footer from "./feature/_global/component/Footer/Footer";
 
 function App() {
   const router = createBrowserRouter([
@@ -42,6 +43,7 @@ function App() {
         <Fragment>
           <Navbar />
           <Outlet />
+          <Footer/>
         </Fragment>
       ,
       children: [
@@ -116,6 +118,7 @@ function App() {
         <Fragment>
           <Navbar />
           <Outlet />
+          <Footer/>
         </Fragment>
       ,
       children: [
