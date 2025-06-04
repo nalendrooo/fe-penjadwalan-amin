@@ -10,7 +10,7 @@ import DetailKelasGuruView from "./feature/guru/view/DetailKelasGuru";
 import MainGuruView from "./feature/guru/view/MainGuruView";
 import TugasKelasGuruView from "./feature/guru/view/TugasKelasGuruView";
 import Class from "./pages/Course/Class";
-import Home from "./feature/siswa/view/BerandaSiswaView";
+// import Home from "./feature/siswa/view/BerandaSiswaView";
 import LoginView from "./feature/auth/view/LoginView";
 import RegisterView from "./feature/auth/view/RegisterView";
 import JadwalSiswaView from "./feature/siswa/view/JadwalSiswaView";
@@ -20,9 +20,9 @@ import KelasSiswaView from "./feature/siswa/view/KelasSiswaView";
 import DetailKelasSiswaView from "./feature/siswa/view/DetailKelasSiswaView";
 import DetailTugasSiswaView from "./feature/siswa/view/DetailTugasSiswa";
 import AdminLayoutSidebar from "./feature/admin/layout/AdminLayoutSidebar";
-import { PDFViewer } from "@react-pdf/renderer";
-import PDFDocument from "./feature/_global/component/Template/PDFDocument";
-import { dummyData } from "./feature/guru/constant/constant";
+// import { PDFViewer } from "@react-pdf/renderer";
+// import PDFDocument from "./feature/_global/component/Template/PDFDocument";
+// import { dummyData } from "./feature/guru/constant/constant";
 import DetailKelasAdminView from "./feature/admin/view/DetailKelasAdminView";
 import ListKelasAdminDetailView from "./feature/admin/view/ListKelasDetailView";
 import Footer from "./feature/_global/component/Footer/Footer";
@@ -137,14 +137,14 @@ function App() {
 
       ],
     },
-    {
-      path: "/guru/kelas/:id/tugas/:id_tugas/raport",
-      element: (
-        <PDFViewer style={{ width: "100%", height: "100vh" }}>
-          <PDFDocument data={dummyData} />
-        </PDFViewer>
-      ),
-    },
+    // {
+    //   path: "/guru/kelas/:id/tugas/:id_tugas/raport",
+    //   element: (
+    //     <PDFViewer style={{ width: "100%", height: "100vh" }}>
+    //       <PDFDocument data={dummyData} />
+    //     </PDFViewer>
+    //   ),
+    // },
     {
       path: "/class",
       element: (

@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { FaBook } from 'react-icons/fa';
 import { GrDashboard } from 'react-icons/gr';
 import { IoPeopleCircleOutline } from 'react-icons/io5';
 import { MdSettingsInputComponent } from 'react-icons/md';
-import { PiBatteryChargingVerticalDuotone } from 'react-icons/pi';
+// import { PiBatteryChargingVerticalDuotone } from 'react-icons/pi';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useToast } from '../../_global/component/Toast/ToastProvider';
 
