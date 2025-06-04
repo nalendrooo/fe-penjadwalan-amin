@@ -1,9 +1,8 @@
-import React, { Fragment } from 'react'
-import Search from '../../../../_global/component/Input/Search'
-import DialogTambahSiswa from '../Dialog/DialogTambahSiswa'
-import TabContentSiswa from './TabContentSiswa'
+import { Fragment } from 'react'
 import { useParams } from 'react-router-dom'
+import Search from '../../../../_global/component/Input/Search'
 import useFetch from '../../../../_global/hooks/useFetch'
+import TabContentSiswa from './TabContentSiswa'
 
 const SiswaContainer = () => {
     const { id } = useParams()

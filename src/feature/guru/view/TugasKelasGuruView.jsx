@@ -1,15 +1,13 @@
-import React, { Fragment } from 'react'
-import { IoMdDownload } from 'react-icons/io';
-import { IoDocumentAttachOutline } from "react-icons/io5";
-import Table from '../component/Table/TableSubmitted';
-import { IoIosArrowBack } from "react-icons/io";
-import useFetch from '../../_global/hooks/useFetch'
-import { useNavigate, useParams } from 'react-router-dom';
-import { formatDateToTime, formatDateToWIB } from '../../_global/helper/formatter';
-import TemplateInfoRow from '../../_global/component/Row/TemplateInfoRow';
-import ListTugasSiswa from '../container/Tugas/ListTugasSiswa';
-import Content from '../../_global/layout/Content';
 import axios from 'axios';
+import { Fragment } from 'react';
+import { IoIosArrowBack, IoMdDownload } from 'react-icons/io';
+import { IoDocumentAttachOutline } from "react-icons/io5";
+import { useNavigate, useParams } from 'react-router-dom';
+import TemplateInfoRow from '../../_global/component/Row/TemplateInfoRow';
+import { formatDateToWIB } from '../../_global/helper/formatter';
+import useFetch from '../../_global/hooks/useFetch';
+import Content from '../../_global/layout/Content';
+import ListTugasSiswa from '../container/Tugas/ListTugasSiswa';
 
 const TugasKelasGuruView = () => {
     const { id, id_tugas } = useParams()

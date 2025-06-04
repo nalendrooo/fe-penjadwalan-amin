@@ -1,14 +1,13 @@
+import { PDFDownloadLink } from '@react-pdf/renderer'
 import React, { Fragment, useEffect, useState } from 'react'
+import ReactApexChart from 'react-apexcharts'
 import { useParams } from 'react-router-dom'
+import PDFDocument from '../../../_global/component/Template/PDFDocument'
+import { checkSubmissionStatus } from '../../../_global/helper/formatter'
 import useFetch from '../../../_global/hooks/useFetch'
+import useProfile from '../../../_global/hooks/useProfile'
 import TableNotSubmitted from '../../component/Table/TableNotSubmitted'
 import TableSubmitted from '../../component/Table/TableSubmitted'
-import ReactApexChart from 'react-apexcharts'
-import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer'
-import PDFDocument from '../../../_global/component/Template/PDFDocument'
-import { dummyData } from '../../constant/constant'
-import { checkSubmissionStatus } from '../../../_global/helper/formatter'
-import useProfile from '../../../_global/hooks/useProfile'
 
 const ListTugasSiswa = ({
     deadline
