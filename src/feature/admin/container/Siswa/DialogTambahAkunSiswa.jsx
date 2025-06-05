@@ -14,7 +14,6 @@ const DialogTambahAkunSiswa = ({
         email: '',
         password: '',
         telephone: '',
-        wali: '',
         nis: ''
     });
 
@@ -23,7 +22,6 @@ const DialogTambahAkunSiswa = ({
         email: '',
         password: '',
         telephone: '',
-        wali: '',
         nis: ''
     });
     const [mapel, setMapel] = useState(0);
@@ -127,31 +125,31 @@ const DialogTambahAkunSiswa = ({
 
     const handleChangeTelephone = (e) => {
         const value = e.target.value;
-    
+
         // Batasi input hanya angka dan maksimal 13 karakter
         const isValid = /^[0-9]{0,13}$/.test(value);
-    
+
         if (!isValid) {
-          setErrors((prev) => ({
-            ...prev,
-            telephone: 'Nomor telepon hanya boleh berisi angka dan maksimal 13 karakter',
-          }));
-          return; // Jangan set state jika tidak valid
+            setErrors((prev) => ({
+                ...prev,
+                telephone: 'Nomor telepon hanya boleh berisi angka dan maksimal 13 karakter',
+            }));
+            return; // Jangan set state jika tidak valid
         }
-    
+
         setErrors((prev) => ({ ...prev, telephone: '' })); // Reset error jika valid
         setState((prev) => ({ ...prev, telephone: value })); // Update state
-      };
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-          await axios.post(
+            await axios.post(
                 `${import.meta.env.VITE_BACKEND}/admin/guru/register/siswa`,
                 state
             );
-       
+
 
             addToast('Akun berhasil dibuat', 'success');
 
@@ -168,7 +166,7 @@ const DialogTambahAkunSiswa = ({
     };
 
 
-    const hasErrors = !!errors.email || !!errors.password || !!errors.telephone || !!errors.nama || !state.email || !state.password || !state.nama || !state.telephone 
+    const hasErrors = !!errors.email || !!errors.password || !!errors.telephone || !!errors.nama || !state.email || !state.password || !state.nama || !state.telephone || !state.nis 
 
 
     return (
