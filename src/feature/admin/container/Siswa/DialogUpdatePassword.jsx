@@ -13,6 +13,7 @@ const DialogUpdatePassword = ({
     const { addToast } = useToast()
 
     const [state, setState] = useState({
+        id: 0,
         email: "",
         password: "",
     });
@@ -35,11 +36,12 @@ const DialogUpdatePassword = ({
 
     useEffect(() => {
         setState({
+            id: data.id,
             email: data.email,
             password: ''
         })
     }, [data])
-    console.log(state)
+ 
     return (
         <Fragment>
             <button
